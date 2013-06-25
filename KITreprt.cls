@@ -149,7 +149,8 @@ If none needed:  \texttt{ \textbackslash newcommand\{\textbackslash noadvisors\}
 \lohead{ \rightmark} 
 \ohead{\sf \iflanguage{english}{Page}{Seite} \pagemark}
 \ifoot{}%irgendwas}
-\cfoot{\mytitle~---~\myshorttitle}%Letzte \"Anderung: \today}
+%\cfoot{\mytitle~---~\myshorttitle}%Letzte \"Anderung: \today}
+\cfoot{\mytitle}%Letzte \"Anderung: \today}
 \ofoot{}%Seitenanzahl: \pageref{LastPage}}
 \setheadsepline{0.5pt} %Dicke der Trennlinie Kopfzeile - Text
 \setheadtopline{1pt}
