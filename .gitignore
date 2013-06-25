@@ -1,0 +1,7 @@
+/rubber.cache
+*.toc
+*.out
+*.log
+*.blg
+*.bbl
+*.aux

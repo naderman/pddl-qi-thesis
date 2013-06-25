@@ -1,0 +1,200 @@
+% Use UTF-8 encoding!!
+% (c) Stefan Ulbrich, 2012
+
+\documentclass[english,ngerman]{KITreprt}
+
+
+%% -------------------------------
+%% |  Information for PDF file   |
+%% -------------------------------
+\hypersetup{
+ pdfauthor={Nils Adermann},
+ pdftitle={Diplomarbeit Nils Adermann},
+ pdfsubject={Not set},
+ pdfkeywords={Not set}
+}
+
+
+%% --------------------------------
+%% Obligatory Parameters:
+%% --------------------------------
+
+\renewcommand{\myname}{Nils Adermann}
+\renewcommand{\mythesis}{\diplomarbeit} %\mastersthesis, \bachelorsthesis, \protocol, \studienarbeit, \diplomarbeit
+\renewcommand{\myshorttitle}{Communicating, Planning and Executing OACs }
+\renewcommand{\mytitle}{Communicating, Planning and Executing Object-Action Complexes}
+
+\renewcommand{\timestart}{October 1\textsuperscript{st}, 2012}
+\renewcommand{\timeend}{March 31\textsuperscript{st}, 2012}
+\newcommand{\advisor}{Prof. Dr.-Ing. Tamim Asfour}
+%\newcommand{\advisortwo}{Nur wenn n\"otig}
+
+\graphicspath{{./figures/}}
+
+
+\begin{document}
+
+
+\selectlanguage{english}
+
+
+\maketitle
+
+
+\tableofcontents
+\chapter{Motivation}
+The majority of robots in use today solve only one or few specific problems in
+easily predictable constraint environments. Rigid requirements on predictability
+may suit industrial robots working in assembly lines but they pose a problem for
+general purpose service robots. A service robot collaborating with humans in
+environments made for humans like a household will encounter a much wider variety
+of objects and activities. A service robot operating in these environments will
+without doubt have to cope with unexpected situations.
+
+Artificial intelligence has been a research subject for more than 50 years and
+many results have been found using simulation or simple robots. But only recent
+advances in hardware and mechanics have made it feasible to build general
+purpose robots like humanoid robots. The open environments these operate in and
+inaccuracies of their sensors pose additional problems for artificial
+intelligence. Decisions need to be made relying on uncertain data, and unexpected
+situations need to be analyzed and understood to react appropriately.
+
+This thesis intends to demonstrate that a robot agent can adapt and plan its
+activities in accordance with dialog held with a human agent or another robot
+agent using the concept of Object-Action Complexes to communicate its
+perceptions and plans. It will further show that Object-Action Complexes are a
+suitable mechanism for learning how to apply existing knowledge to new
+situations using information provided through dialog with another agent.
+
+The robot is fitted with a dialog system to allow a user to provide the robot
+with information about its environment and its capabilities. The user can
+instruct the robot to perform complex tasks. The robot uses a symbolic task
+planning system to arrive at a series of actions to be executed to achieve the
+goal selected by the user. The task planner is also used to plan further dialog
+contributing information required to execute steps of the plan in order to
+achieve the goal.
+
+The robot's knowledge of its own capabilities and objects in its environment is
+represented in Object-Action Complexes. Object-Action Complexes are symbolic
+representations of sensorimotor experience grounded in real-world experience of
+the robot. They are designed to formalize adaptive and predictive behaviors at
+all levels of a cognitive processing hierarchy \cite{Geib2011}. Thus the robot can
+communicate with other agents about abstract Object-Action Complexes which are
+still grounded in actual sensorimotor experience. As Object-Action Complexes
+additionally provide sufficient formalisation to use them in high-level symbolic
+task planning, they allow the robot to execute complex tasks involving
+communication.
+
+Throughout this thesis we assume that the robot has already gained various
+sensorimotor experiences recorded in Object-Action Complexes. The goal is now to
+find suitable mechanisms to generate abstractions of these Object-Action
+Complexes which aid communication. These abstractions categorize various
+Object-Action Complexes into more generic groups suitable for translation into
+spoken language. These categories enable the robot to predict that a particular
+new Object-Action Complex might be executable if it can place the description
+of the Object-Action Complex in the same category as existing Object-Action
+Complexes. As a result the robot can learn new Object-Action Complexes through
+spoken language which it can still actually execute by transfering sensorimotor
+experiences from similar Object-Action Complexes. Experimentation then allows
+the robot to refine these new Object-Action Complexes according to specifics
+not directly clear from just the category of Object-Action Complexes it is a
+part of.
+
+To evaluate the proposed mechanism for learning categories of Object-Action
+Complexes the execution of Object-Action Complexes is combined with
+dialog in a scenario that involves tightly coupled interaction between two
+agents. The agents need to cooperate in order to achieve a complex goal
+together. They can only reach their goal by communicating sensorimotor
+information including perceived force exerted by the other agent. The symbolic
+task planner is responsible for deciding which Object-Action Complexes to
+execute and which information needs to be relayed to the other participating
+agent in the form of abstract Object-Action Complexes.
+
+Goals:
+- Execution of OACs chosen through learned categories of OACs
+- Application of OACs to unknown (on semantic level) objects assumed to be
+  applicable because of spoken dialog and OAC categorisation
+- Acquiring knowledge about physically executable OACs from dialog
+  - Example for grounding of spoken communication about plans \& OACs
+    in physical embodiment
+
+\chapter{State of the Art}
+\begin{itemize}
+    \item Formal definition of OACs and previous uses of OACs
+        \begin{itemize}
+            \item Relationship between OACs and language
+            \item Learning OACs \& OAC categories
+        \end{itemize}
+    \item Brief background in dialog systems
+    \item Planning in AI in general
+        \begin{itemize}
+            \item PKS
+            \item Execution of symbolic plans on real robots (PACO-PLUS/Studienarbeit)
+        \end{itemize}
+    \item Planning dialog with symbolic planners
+        \begin{itemize}
+            \item Combining Dialog Planning with Task Planning
+            \item Dialog Planning with PKS
+        \end{itemize}
+\end{itemize}
+
+Questions:
+Where do predicates come from?
+How are predicates and continuous sensor data linked
+  - discretization processes from attributes / perception
+How can a task specific domain be chosen?
+How is the level of abstraction chose?
+Are there even clear hierarchies of OACs?
+Can one plan on a higher level without considering a lower level?
+Excluding spatial information? Motion planning -> task planning
+-> but even humans don't consider what they will do 20 steps ahead when performing an action, unless they have learned from experience to consider that particular other action far in the distance -> how does this relate to working memory \& attention?
+
+Memory Models: LTM/Working Memory
+How to represent knowledge of actions \& objects in memory
+How to use memory in the context of planning
+How are planning domains related to LTM?
+How is plan monitoring related to working memory validation?
+
+\chapter{Solution and Implementation}
+- Integrating new version of PKS with ARMAR based on SPOAC
+- Replacing SPOAC short term memory with new Memory System by Alexey
+- Finding and implementing suitable algorithms for learning OAC categorizations
+- Changes to SPOAC to be able to detect new "unknown" objects
+- Designing PKS domains for examples
+- Extending SPOAC perceptors with all sensor data required for the examples
+- SPOAC perceptor for force feedback
+- Defining an encoding for information about tightly coupled interaction in OACs
+- Integration with speech recognition system (tbd) for demos
+- Creating a new main scenario controller which deals with language input and
+  starts planning only when appropriate
+
+
+memoryx introduction - alexey reference
+framework for segmentable memory
+new segments: oacsegment, activeoacsegment, episode segment
+
+episodic memory implementation
+
+PDDL, pddl parser / AST / PKS transformation / execution - some papers on building parsers/compilers/vms
+
+gui: step by step simulation (like debugger)
+
+simulation allows specifying particular failures by providing override PDDL effect for particular OACs in particular situations
+
+\chapter{Evaluation and Discussion}
+- Examples (show that it works at all)
+  - ARMAR wipes a table with cloth and learns about sponges
+  - ARMAR and human carry a large board together, ARMAR gives instructions
+    (through the door, left right, duck)
+- categorisation of OACs through generated dialog (Peter) taking place in simulation
+
+\chapter{Conclusion}
+
+
+\bibliographystyle{abbrvnat} %-English
+
+%\bibliographystyle{dinat} %-Deutsch
+
+\bibliography{thesis}
+
+\end{document}
