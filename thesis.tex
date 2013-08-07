@@ -24,8 +24,8 @@
 \renewcommand{\myshorttitle}{}
 \renewcommand{\mytitle}{Communicating, Planning, and Executing Object-Action Complexes}
 
-\renewcommand{\timestart}{October 1\textsuperscript{st}, 2012}
-\renewcommand{\timeend}{March 31\textsuperscript{st}, 2012}
+\renewcommand{\timestart}{October 1\textsuperscript{st}, 2013}
+\renewcommand{\timeend}{March 31\textsuperscript{st}, 2013}
 \newcommand{\advisor}{Prof. Dr.-Ing. Tamim Asfour}
 %\newcommand{\advisortwo}{Nur wenn n\"otig}
 
@@ -81,7 +81,7 @@ the robot. They are designed to formalize adaptive and predictive behaviors at
 all levels of a cognitive processing hierarchy \cite{Geib2011}. Thus the robot can
 communicate with other agents about abstract Object-Action Complexes which are
 still grounded in actual sensorimotor experience. As Object-Action Complexes
-additionally provide sufficient formalisation to use them in high-level symbolic
+additionally provide sufficient formalization to use them in high-level symbolic
 task planning, they allow the robot to execute complex tasks involving
 communication.
 
@@ -111,23 +111,37 @@ execute and which information needs to be relayed to the other participating
 agent in the form of abstract Object-Action Complexes.
 
 Goals:
-- Execution of OACs chosen through learned categories of OACs
-- Application of OACs to unknown (on semantic level) objects assumed to be
-  applicable because of spoken dialog and OAC categorisation
-- Acquiring knowledge about physically executable OACs from dialog
-  - Example for grounding of spoken communication about plans \& OACs
-    in physical embodiment
+\begin{itemize}
+    \item Execution of OACs chosen through learned categories of OACs
+    \item Application of OACs to unknown (on semantic level) objects assumed to be
+        applicable because of spoken dialog and OAC categorization
+    \item Acquiring knowledge about physically executable OACs from dialog
+        \begin{itemize}
+            \item Example for grounding of spoken communication about plans \& OACs
+                in physical embodiment
+        \end{itemize}
+\end{itemize}
 
 \chapter{State of the Art}
 \begin{itemize}
     \item Formal definition of OACs and previous uses of OACs
         \begin{itemize}
             \item Relationship between OACs and language
-            \item Learning OACs \& OAC categories
+            \item Grounding \& Executing OACs
+            \item Learning OACs
         \end{itemize}
-    \item Brief background in dialog systems
-    \item Planning in AI in general
+    \item Dialog systems
         \begin{itemize}
+            \item Speech recognition
+                \begin{itemize}
+                    \item one4all (Waibel)
+                \end{itemize}
+            \item Natural Language Generation
+            \item Maintaining conversational state
+        \end{itemize}
+    \item Planning in AI
+        \begin{itemize}
+            \item PDDL
             \item PKS
             \item Execution of symbolic plans on real robots (PACO-PLUS/Studienarbeit)
         \end{itemize}
@@ -155,19 +169,79 @@ How to use memory in the context of planning
 How are planning domains related to LTM?
 How is plan monitoring related to working memory validation?
 
-\chapter{Solution and Implementation}
-- Integrating new version of PKS with ARMAR based on SPOAC
-- Replacing SPOAC short term memory with new Memory System by Alexey
-- Finding and implementing suitable algorithms for learning OAC categorizations
-- Changes to SPOAC to be able to detect new "unknown" objects
-- Designing PKS domains for examples
-- Extending SPOAC perceptors with all sensor data required for the examples
-- SPOAC perceptor for force feedback
-- Defining an encoding for information about tightly coupled interaction in OACs
-- Integration with speech recognition system (tbd) for demos
-- Creating a new main scenario controller which deals with language input and
-  starts planning only when appropriate
+\chapter{A Cognitive Architecture for Object-Action Complexes}
 
+\section{MemoryX}
+\begin{itemize}
+    \item Overview
+    \item Working Memory Segments
+        \begin{itemize}
+            \item Object Instances
+            \item Relations
+            \item Active OAC
+        \end{itemize}
+    \item Long Term Memory Segments
+        \begin{itemize}
+            \item Object Instance Classes
+            \item Relation Classes (?)
+            \item OACs
+            \item Episodes
+        \end{itemize}
+\end{itemize}
+
+\section{The Central Executive Agent}
+\begin{itemize}
+    \item Processes
+        \begin{itemize}
+            \item Perception
+            \item Execution / Simulation
+            \item Task Selection
+            \item Planning
+            \item Learning
+        \end{itemize}
+\end{itemize}
+
+\section{Planning}
+\begin{itemize}
+    \item PDDL / PKS
+    \item Interface
+\end{itemize}
+
+\section{Evaluation and Discussion}
+
+
+\chapter{Integration of a dialog system with Working Memory}
+
+\section{Evaluation and Discussion}
+
+\chapter{Planning with Dialog}
+
+\section{Evaluation and Discussion}
+\begin{itemize}
+    \item Examples (show that it works at all)
+        \begin{itemize}
+            \item ARMAR wipes a table with cloth and learns about sponges
+            \item ARMAR and human carry a large board together, ARMAR gives instructions
+                (through the door, left right, duck)
+        \end{itemize}
+    \item ???? categorization of OACs through generated dialog (Peter) taking place in simulation
+\end{itemize}
+
+\begin{itemize}
+    \item Integrating new version of PKS with ARMAR based on SPOAC
+    \item Working Memory system by Alexey
+        \begin{itemize}
+            \item Compare to SPOAC
+        \end{itemize}
+    \item Changes to SPOAC to be able to detect new "unknown" objects
+    \item Designing PKS domains for examples
+    \item Extending SPOAC perceptors with all sensor data required for the examples
+    \item SPOAC perceptor for force feedback
+    \item Defining an encoding for information about tightly coupled interaction in OACs
+    \item Integration with speech recognition system for demos
+    \item Creating a new main scenario controller which deals with language input and
+        starts planning only when appropriate
+\end{itemize}
 
 memoryx introduction - alexey reference
 framework for segmentable memory
@@ -180,13 +254,6 @@ PDDL, pddl parser / AST / PKS transformation / execution - some papers on buildi
 gui: step by step simulation (like debugger)
 
 simulation allows specifying particular failures by providing override PDDL effect for particular OACs in particular situations
-
-\chapter{Evaluation and Discussion}
-- Examples (show that it works at all)
-  - ARMAR wipes a table with cloth and learns about sponges
-  - ARMAR and human carry a large board together, ARMAR gives instructions
-    (through the door, left right, duck)
-- categorisation of OACs through generated dialog (Peter) taking place in simulation
 
 \chapter{Conclusion}
 
